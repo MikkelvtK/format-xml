@@ -4,6 +4,7 @@
 # Has dependency on 'lxml'
 from bs4 import BeautifulSoup
 import pyperclip
+import subprocess
 import sys
 import os
 
@@ -24,8 +25,7 @@ def main():
     
     # Check if user supplied correct XML
     if len(data.contents) == 0:
-        print("Application error: No valid XML string was found in clipboard")
-        sys.exit(1)
+        raise_error("no valid XML string was found in clipboard")
 
     # Prettify the parsed XML string
     data = data.prettify()
@@ -45,7 +45,10 @@ def main():
         f.write(data)
 
     # Open output file
-    os.startfile(file_path)
+    try:
+        subprocess.Popen([file_path])
+    except PermissionError:
+        raise_error("unable to open file -- permission denied")
 
     # Copy the parsed XML to clipboard
     pyperclip.copy(data)
@@ -54,6 +57,11 @@ def main():
     print("Format-XML has been successfully executed")
     sys.exit(0)
 
+
+def raise_error(msg: str):
+    print("Application error: " + msg)
+    sys.exit(1)
+    
 
 if __name__ == "__main__":
     main()
