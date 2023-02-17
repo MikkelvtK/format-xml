@@ -30,17 +30,22 @@ def main():
     # Prettify the parsed XML string
     data = data.prettify()
 
+    # Get absolute path
+    path = os.path.dirname(os.path.abspath(__file__))
+
     # Create directory for output 
-    if OUTPUT not in os.listdir():
-        path = os.path.dirname(os.path.abspath(__file__))
+    if OUTPUT not in os.listdir(path):
         os.mkdir(os.path.join(path, OUTPUT))
 
+    # Get output file path
+    file_path = os.path.join(path, OUTPUT, OUTPUT_FILE)
+
     # Write parsed XML to file
-    with open(os.path.join(OUTPUT, OUTPUT_FILE), "w") as f:
+    with open(file_path, "w") as f:
         f.write(data)
 
     # Open output file
-    os.startfile(os.path.join(OUTPUT, OUTPUT_FILE))
+    os.startfile(file_path)
 
     # Copy the parsed XML to clipboard
     pyperclip.copy(data)
