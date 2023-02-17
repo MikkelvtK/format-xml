@@ -33,18 +33,20 @@ def main():
     # Create directory for output 
     if OUTPUT not in os.listdir():
         path = os.path.dirname(os.path.abspath(__file__))
-        output_path = os.path.join(path, OUTPUT)
-        os.mkdir(output_path)
+        os.mkdir(os.path.join(path, OUTPUT))
 
     # Write parsed XML to file
     with open(os.path.join(OUTPUT, OUTPUT_FILE), "w") as f:
         f.write(data)
 
     # Open output file
-    os.system(os.path.join(OUTPUT, OUTPUT_FILE))
+    os.startfile(os.path.join(OUTPUT, OUTPUT_FILE))
 
     # Copy the parsed XML to clipboard
     pyperclip.copy(data)
+
+    # Finish script gracefully
+    print("Format-XML has been successfully executed")
 
 
 if __name__ == "__main__":
