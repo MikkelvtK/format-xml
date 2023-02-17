@@ -14,7 +14,7 @@ OUTPUT_FILE = "fml.txt"
 def main():
     if len(sys.argv) > 1:
         print("USAGE: fml.py")
-        sys.exit()
+        sys.exit(1)
 
     # Read XML string from clipboard
     data = pyperclip.paste()
@@ -25,7 +25,7 @@ def main():
     # Check if user supplied correct XML
     if len(data.contents) == 0:
         print("Application error: No valid XML string was found in clipboard")
-        sys.exit()
+        sys.exit(1)
 
     # Prettify the parsed XML string
     data = data.prettify()
@@ -52,6 +52,7 @@ def main():
 
     # Finish script gracefully
     print("Format-XML has been successfully executed")
+    sys.exit(0)
 
 
 if __name__ == "__main__":
