@@ -12,9 +12,8 @@ This script will do the following:
 
 ## Install
 
-Git pull project from repo and then run the following command to install requirements:
-
-`pip install -r requirements.txt`
+1. Download the latest release
+2. `pip install -r requirements.txt`
 
 ## To run
 `python3 <path-to-fml.py>`
