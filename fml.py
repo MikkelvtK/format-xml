@@ -45,10 +45,7 @@ def main():
         f.write(data)
 
     # Open output file
-    try:
-        subprocess.Popen([file_path])
-    except PermissionError:
-        raise_error("unable to open file -- permission denied")
+    subprocess.run(args=[file_path], shell=True)
 
     # Copy the parsed XML to clipboard
     pyperclip.copy(data)
