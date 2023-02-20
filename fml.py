@@ -8,7 +8,7 @@ import subprocess
 import sys
 import os
 
-OUTPUT = "output"
+OUTPUT_DIR = "output"
 OUTPUT_FILE = "fml.txt"
 
 
@@ -34,11 +34,11 @@ def main():
     path = os.path.dirname(os.path.abspath(__file__))
 
     # Create directory for output 
-    if OUTPUT not in os.listdir(path):
-        os.mkdir(os.path.join(path, OUTPUT))
+    if OUTPUT_DIR not in os.listdir(path):
+        os.mkdir(os.path.join(path, OUTPUT_DIR))
 
     # Get output file path
-    file_path = os.path.join(path, OUTPUT, OUTPUT_FILE)
+    file_path = os.path.join(path, OUTPUT_DIR, OUTPUT_FILE)
 
     # Write parsed XML to file
     with open(file_path, "w") as f:
