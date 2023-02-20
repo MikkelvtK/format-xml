@@ -44,11 +44,11 @@ def main():
     with open(file_path, "w") as f:
         f.write(data)
 
-    # Open output file
-    subprocess.run(args=[file_path], shell=True)
-
     # Copy the parsed XML to clipboard
     pyperclip.copy(data)
+
+    # Open output file
+    subprocess.run(args=[file_path], shell=True)
 
     # Finish script gracefully
     print("Format-XML has been successfully executed")
