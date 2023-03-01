@@ -9,7 +9,7 @@ import sys
 import os
 
 OUTPUT_DIR = "output"
-OUTPUT_FILE = "fml.txt"
+OUTPUT_FILE = "fml.xml"
 
 
 def main():
@@ -42,7 +42,10 @@ def main():
 
     # Write parsed XML to file
     with open(file_path, "w") as f:
-        f.write(data)
+        bytes_written = f.write(data)
+
+        if bytes_written == 0:
+            raise_error("no output was written to output file")
 
     # Copy the parsed XML to clipboard
     pyperclip.copy(data)
